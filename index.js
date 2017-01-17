@@ -80,6 +80,8 @@ proto.apply = function(compiler) {
     // 空间名称
     bucket = me.bucket;
 
+    filter = me.filter;
+
 
   compiler.plugin('after-emit', onAfterEmit);
 
@@ -100,6 +102,10 @@ proto.apply = function(compiler) {
       var resource;
 
       if (!asset.emitted) {
+        return;
+      }
+
+      if (filter(fileName)) {
         return;
       }
 
